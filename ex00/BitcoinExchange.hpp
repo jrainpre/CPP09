@@ -14,7 +14,7 @@ class BitcoinExchange
 {
 private:
 	std::map<std::string, float> _db;
-	std::map<std::string, float, float> _convert;
+	std::map<std::string, float> _convert;
 
 
 public:
@@ -45,7 +45,7 @@ void BitcoinExchange::fill_db(std::string filename)
 
     if (!file.is_open()) {
         std::cout << "Could not open file\n";
-		exit;
+		exit(1);
     }
 	std::getline(file, line);
 	line = "";
@@ -55,7 +55,7 @@ void BitcoinExchange::fill_db(std::string filename)
         std::getline(ss, date, ',');
 		std::getline(ss, temp);
 		value = atof(temp.c_str());
-		_convert[date] = value;
+		_db[date] = value;
 		line = "";
 	}
 }
@@ -70,18 +70,17 @@ void BitcoinExchange::fill_input(std::string filename)
     std::ifstream file(filename);
     if (!file.is_open()) {
         std::cout << "Could not open file\n";
-		exit;
-    }
-
+		exit(1);
+	}
 	std::getline(file, line);
 	line = "";
     while (std::getline(file, line))
     {
     	std::istringstream ss(line);
-        std::getline(ss, date, ',');
+        std::getline(ss, date, '|');
 		std::getline(ss, temp);
 		value = atof(temp.c_str());
-		_db[date] = value;
+		_convert[date] = value;
 		line = "";
 	}
 }
@@ -100,6 +99,8 @@ void BitcoinExchange::convert()
 					std::cout << it->first << " => " << it->second * it2->second << std::endl;
 			}
 		}
+			if (it == _db.end())
+				std::cout << "Invalid date: " << it->first << std::endl;
 	}
 }
 
