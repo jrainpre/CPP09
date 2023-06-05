@@ -9,7 +9,7 @@
 
 NAME        := a.out
 CC         := c++
-FLAGS    := -Wall -Wextra -Werror -std=c++98
+FLAGS    := -Wall -Wextra -Werror -std=c++98 -g -D_GLIBCXX_DEBUG
  
 ################################################################################
 #                                 PROGRAM'S SRCS                               #
@@ -54,13 +54,6 @@ fclean:		clean
 
 re:			fclean all
 
-################################################################################
-#                                 PROGRAM'S SRCS                               #
-################################################################################
+.PHONY:		all clean fclean re
 
-SRCS        :=      main.cpp \
-                          
-OBJS        := ${SRCS:.cpp=.o}
 
-.cpp.o:
-	${CC} ${FLAGS} -c $< -o ${<:.cpp=.o}

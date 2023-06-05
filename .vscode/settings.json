@@ -17,6 +17,7 @@
 		"concepts": "cpp",
 		"cstdint": "cpp",
 		"deque": "cpp",
+		"list": "cpp",
 		"map": "cpp",
 		"unordered_map": "cpp",
 		"vector": "cpp",
@@ -48,6 +49,8 @@
 		"sstream": "cpp",
 		"stdexcept": "cpp",
 		"streambuf": "cpp",
-		"typeinfo": "cpp"
+		"typeinfo": "cpp",
+		"ctime": "cpp",
+		"iomanip": "cpp"
 	}
 }
