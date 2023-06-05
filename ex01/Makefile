@@ -7,7 +7,7 @@
 #                                     CONFIG                                   #
 ################################################################################
 
-NAME        := a.out
+NAME        := RPN
 CC         := c++
 FLAGS    := -Wall -Wextra -Werror -std=c++98 -g -D_GLIBCXX_DEBUG
  
@@ -16,7 +16,7 @@ FLAGS    := -Wall -Wextra -Werror -std=c++98 -g -D_GLIBCXX_DEBUG
 ################################################################################
 
 SRCS        :=      main.cpp \
-					BitcoinExchange.cpp \
+                          RPN.cpp \
                           
 OBJS        := ${SRCS:.cpp=.o}
 
