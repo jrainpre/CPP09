@@ -9,7 +9,7 @@
 			"name": "(gdb) Launch",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/ex01/RPN",
+			"program": "${workspaceFolder}/ex02/a.out",
 			"args": [],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
