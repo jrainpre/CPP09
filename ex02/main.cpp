@@ -35,7 +35,6 @@ int main(int argc, char **argv)
 		std::cout << "Usage: ./PmergeMe n1 n2 n3 nxx" << std::endl;
 		return 1;
 	}
-	v_start = clock();
 	for (int i = 1; i < argc; i++)
 	{
 
@@ -47,6 +46,7 @@ int main(int argc, char **argv)
 		}
 		vector.push(n);
 	}
+	v_start = clock();
 	vector.fj_sort(0, argc - 2);
 	v_end = clock();
 	std::cout << "Before :";
@@ -57,7 +57,7 @@ int main(int argc, char **argv)
 	std::cout << "After  :";
 	vector.print();
 	std::cout << std::endl;
-	std::cout << "Time to process a range of " << argc - 1 << " elements in a vector: " << std::fixed << std::showpoint << static_cast<double>(v_end - v_start) / CLOCKS_PER_SEC << " seconds" << std::endl;
+	std::cout << "Time to process a range of " << argc - 1 << " elements in a vector: " << std::fixed << std::showpoint << static_cast<double>(v_end - v_start) / CLOCKS_PER_SEC * 1000 << " us" << std::endl;
 	d_start = clock();
 	for (int i = 1; i < argc; i++)
 	{
@@ -74,6 +74,6 @@ int main(int argc, char **argv)
 	// std::cout << "After  :";
 	// deque.print();
 	// std::cout << std::endl;
-	std::cout << "Time to process a range of " << argc - 1 << " elements in a deque: " << static_cast<double>(d_end - d_start) / CLOCKS_PER_SEC << " seconds" << std::endl;
+	std::cout << "Time to process a range of " << argc - 1 << " elements in a deque: " << static_cast<double>(d_end - d_start) / CLOCKS_PER_SEC * 1000 << " us" << std::endl;
 	
 }

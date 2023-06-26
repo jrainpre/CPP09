@@ -28,6 +28,7 @@ public:
 	void fill_input(std::string filename);
 	void convert();
 	int check_date_valid(std::string date);
+	int check_date_in_database(std::string date);
 	int convert_date_to_int(std::string date);
 	float return_closest_rate(std::string date);
 	int check_value_valid(float value);

@@ -106,6 +106,15 @@ int BitcoinExchange::check_date_valid(std::string date)
 	return 1;
 }
 
+int BitcoinExchange::check_date_in_database(std::string date)
+{
+	int convert = convert_date_to_int(date);
+	int db = convert_date_to_int(_db.begin()->first);
+	if (convert < db)
+		return 0;
+	return 1;
+}
+
 int BitcoinExchange::check_value_valid(float value)
 {
 	if (value < 0)
@@ -132,6 +141,7 @@ float BitcoinExchange::return_closest_rate(std::string date)
 	int date_int = convert_date_to_int(date);
 	int closest_date_int = 0;
 	float closest_rate = 0;
+	std::map<std::string, float>::iterator save_it;
 	for (std::map<std::string, float>::iterator it = _db.begin(); it != _db.end(); it++)
 	{
 		if (closest_date_int == 0)
@@ -141,8 +151,18 @@ float BitcoinExchange::return_closest_rate(std::string date)
 		}
 		else if (abs(date_int - convert_date_to_int(it->first)) < abs(date_int - closest_date_int))
 		{
-			closest_date_int = convert_date_to_int(it->first);
-			closest_rate = it->second;
+			if (abs(date_int - convert_date_to_int(it->first)) == 0)
+			{
+				closest_date_int = convert_date_to_int(it->first);
+				closest_rate = it->second;
+			}
+			else 
+			{
+				save_it = it;
+				save_it--;
+				closest_date_int = convert_date_to_int(save_it->first);
+				closest_rate = save_it->second;
+			}
 		}
 	}
 	return closest_rate;
@@ -159,9 +179,14 @@ void BitcoinExchange::convert()
 			std::cout << "Error: Invalid date: " << it->first << std::endl;
 			continue;
 		}
+		if (check_date_in_database(it->first) == 0)
+		{
+			std::cout << "Error: Date not in database: " << it->first << std::endl;
+			continue;
+		}
 		if (check_value_valid(it->second) == 0)
 			continue;
 		float rate = return_closest_rate(it->first);
-			std::cout << it->first << " => " << std::setprecision(2) << rate << " = " << std::setprecision(2) << it->second * rate << std::endl;
+			std::cout << it->first << " => " << std::setprecision(2) << rate << " = " << std::setprecision(2) << std::fixed << it->second * rate << std::endl;
 		}
 }
