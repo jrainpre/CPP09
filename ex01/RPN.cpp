@@ -59,6 +59,15 @@ bool RPN::check_token_valid(std::string token)
 	return true;
 }
 
+void RPN::check_stacksize()
+{
+	if (_stack.size() < 2)
+	{
+		std::cout << "Invalid input" << std::endl;
+		exit(1);
+	}
+}
+
 void RPN::fill_input_calc()
 {
 	std::stringstream ss(_input);
@@ -75,6 +84,7 @@ void RPN::fill_input_calc()
 			_stack.push(atoi(token.c_str()));
 		else if (token == "+")
 		{
+			check_stacksize();
 			i = _stack.top();
 			_stack.pop();
 			i += _stack.top();
@@ -83,6 +93,7 @@ void RPN::fill_input_calc()
 		}
 		else if (token == "-")
 		{
+			check_stacksize();
 			i = _stack.top();
 			_stack.pop();
 			i = _stack.top() - i;
@@ -91,6 +102,7 @@ void RPN::fill_input_calc()
 		}
 		else if (token == "*")
 		{
+			check_stacksize();
 			i = _stack.top();
 			_stack.pop();
 			i *= _stack.top();
@@ -99,6 +111,7 @@ void RPN::fill_input_calc()
 		}
 		else if (token == "/")
 		{
+			check_stacksize();
 			i = _stack.top();
 			_stack.pop();
 			i = _stack.top() / i;
@@ -107,6 +120,7 @@ void RPN::fill_input_calc()
 		}
 		else if (token == "%")
 		{
+			check_stacksize();
 			i = _stack.top();
 			_stack.pop();
 			i = _stack.top() % i;

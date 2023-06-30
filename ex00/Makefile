@@ -7,7 +7,7 @@
 #                                     CONFIG                                   #
 ################################################################################
 
-NAME        := a.out
+NAME        := btc
 CC         := c++
 FLAGS    := -Wall -Wextra -Werror -std=c++98 -g -D_GLIBCXX_DEBUG
  

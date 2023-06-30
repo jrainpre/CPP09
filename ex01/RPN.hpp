@@ -16,6 +16,7 @@ class RPN
 		void fill_input_calc();
 		bool check_token_valid(std::string token);
 		bool check_input_valid();
+		void check_stacksize();
 	public:
 		RPN();
 		RPN(std::string input);
