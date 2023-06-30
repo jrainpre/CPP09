@@ -11,7 +11,7 @@ int main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cout << "Usage: ./a.out <filename>" << std::endl;
+		std::cout << "Usage: ./btc <filename>" << std::endl;
 		exit(1);
 	}
 	BitcoinExchange b;
